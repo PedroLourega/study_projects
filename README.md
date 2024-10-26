@@ -9,7 +9,9 @@
 <h2>💡 Como Usar: </h2>
 <li>Basta informar o horário de entrada e saída de um cliente e o tipo de serviço. O sistema fará o resto, gerando um relatório completo com valor total e duração da sessão.</li>
 
-🚧 Próximos Passos:
+<hr>
 
-🧾 Cadastro de Usuários
-📊 Relatórios Diários de Receita e Tempo
+🚧 Próximos Passos:
+<li>
+🧾 Cadastro de Usuários<br></li>
+<li>📊 Relatórios Diários de Receita e Tempo</li>
