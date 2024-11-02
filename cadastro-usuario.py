@@ -46,6 +46,8 @@ def menu():
         print("3. Excluir usuário")
         print("4. Listar usuário")
         print("5. Sair")
+        print("------------------------------------------")
+
 
         opcao = input("Escolha uma opção: ")
 
