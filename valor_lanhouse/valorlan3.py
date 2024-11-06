@@ -1,43 +1,39 @@
-# Main
-def calcular_valor(duracao_minutos, preco_fixo_hora, preco_fixo_30min, preco_fixo_45min, preco_baixo):
+#Main
+def calcular_valor(duracao_minutos, preco_por_minuto):
+   
+    valor_inicial = duracao_minutos * preco_por_minuto
     
-    # Verifica a duração e retorna o valor conforme o tempo
-    if duracao_minutos <= 29:
-        return preco_baixo  # Retorna o valor quando for menor que 30 min
-    elif 30 <= duracao_minutos < 45:
-        return preco_fixo_30min  # Retorna o valor para 30 min
-    elif 45 <= duracao_minutos < 60:
-        return preco_fixo_45min  # Retorna o valor para 45 min até menos de 1 hora
-
-    # Calcula o valor com base na duração em horas, se for mais de 1 hora
-    horas = duracao_minutos // 60
-    valor = preco_fixo_hora * horas
-
-    # Calcula o desconto com base no número de horas
-    if horas > 5:
+    
+    horas = duracao_minutos // 60  
+    if horas >= 5:
         desconto = 0.15
-    elif horas > 3:
+    elif horas >= 3:
         desconto = 0.13
-    elif horas > 2:
+    elif horas >= 2:
         desconto = 0.10
-    elif horas > 1:
-        desconto = 0.07  
+    elif horas >= 1:
+        desconto = 0.07
     else:
-        desconto = 0.0
+        desconto = 0.0  
 
-    valor_com_desconto = valor * (1 - desconto)
+   
+    valor_com_desconto = valor_inicial * (1 - desconto)
     return valor_com_desconto
 
-# Preço de cada serviço disponível
+
 def calcular_valor_lan_house(duracao_minutos):
-    return calcular_valor(duracao_minutos, preco_fixo_hora=30, preco_fixo_45min=25, preco_fixo_30min=20, preco_baixo=((2*duracao_minutos)*67/100))
+    preco_por_minuto = 0.50 
+    return calcular_valor(duracao_minutos, preco_por_minuto)
 
 def calcular_valor_lan_ps5(duracao_minutos):
-    return calcular_valor(duracao_minutos, preco_fixo_hora=45, preco_fixo_45min=35, preco_fixo_30min=30, preco_baixo=((5*duracao_minutos)*67/100))
+    preco_por_minuto = 0.75  
+    return calcular_valor(duracao_minutos, preco_por_minuto)
 
 def calcular_valor_lan_vr(duracao_minutos):
-    return calcular_valor(duracao_minutos, preco_fixo_hora=100, preco_fixo_45min=75, preco_fixo_30min=50, preco_baixo=((8*duracao_minutos)*67/100))
+    preco_por_minuto = 1.50  
+    return calcular_valor(duracao_minutos, preco_por_minuto)
 
+#Menu
 while True:
     print("-----Menu de Serviços-----")
     print("1. Lan House")
@@ -53,18 +49,18 @@ while True:
         break
 
     if opcao in ['1', '2', '3']:
-        # Entrada de dados de tempo utilizado
+        # Entrada de dados
         hora_entrada = list(map(int, input("Digite a hora e o minuto de entrada (HH MM): ").split()))
         hora_saida = list(map(int, input("Digite a hora e o minuto de saída (HH MM): ").split()))
 
-        # Converte a entrada e a saída
+        # Conversor
         entrada_minutos = hora_entrada[0] * 60 + hora_entrada[1]
         saida_minutos = hora_saida[0] * 60 + hora_saida[1]
 
-        # Calcula a duração em minutos
+        # Calcula a duração em min
         duracao_minutos = saida_minutos - entrada_minutos
 
-        # Calculo de horas e minutos
+        # Cálculo de horas e min
         horas_totais = duracao_minutos // 60
         minutos_totais = duracao_minutos % 60
 
@@ -79,7 +75,7 @@ while True:
             valor = calcular_valor_lan_vr(duracao_minutos)
             servico = "VR"
 
-        # Resultados
+        # Resultado
         print("---------------------------")
         print(f"Serviço: {servico}")
         print(f"Duração total: {horas_totais}h:{minutos_totais}m")
